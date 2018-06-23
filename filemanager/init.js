@@ -151,7 +151,7 @@ theWebUI.fManager = {
 
 			switch($type(arguments[i])) {
 				case 'string':
-					rg = '"'+this.addslashes(arguments[i])+'"';
+					rg = JSON.stringify(arguments[i]);
 
 
 					break;
@@ -167,13 +167,6 @@ theWebUI.fManager = {
 
 
 	},
-
-
-	addslashes: function (str) {
-	// http://phpjs.org/functions/addslashes:303
-   		 return (str + '').replace(/[\\"\/]/g, '\\$&').replace(/\u0000/g, '\\0');
-	},
-
 
 	actStart: function (diag) {
 
@@ -242,7 +235,7 @@ theWebUI.fManager = {
 			if (checks.size() == 0) {alert("Nothing is not a option"); return false;}
 
 			checks.each(function(index, val) {
-				theWebUI.fManager.actionlist[index] = theWebUI.fManager.addslashes(decodeURIComponent(val.value));
+				theWebUI.fManager.actionlist[index] = decodeURIComponent(val.value);
 
 			});
 
